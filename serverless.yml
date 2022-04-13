@@ -1,0 +1,15 @@
+service: serverless-bert-summarizer-docker
+
+provider:
+  name: aws # provider
+  region: us-east-1 # aws region
+  memorySize: 3008 # optional, in MB, default is 1024
+  timeout: 30 # optional, in seconds, default is 6
+
+functions:
+  bertsummary:
+    image: 334847460589.dkr.ecr.us-east-1.amazonaws.com/bert-summary@sha256:2938033e107bf8e406f95b50ae08b3292a44c75df87b9b4892ee94eb19c56196 #ecr url
+    events:
+      - http:
+          path: summary # http path
+          method: post # http method
